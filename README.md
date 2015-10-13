@@ -16,6 +16,9 @@ $ ruby pair_organiser.rb
 
  NOTE:  This algorithm employed uses a pseudo-random search and is not guaranteed to terminate.  I have successfully run the algorithm for up to 34 individuals, but it took six non-terminating runs before the correct solution could be generated.  If the algorithm gets stuck on a large pairing set do ctrl-C and restart a few times to see if another pseudo-random path will generate a solution.
 
+Question on math StackExchange related to the above issue:
+
+* http://math.stackexchange.com/questions/1477767/efficiently-partition-a-set-into-all-possible-unique-pair-combinations
 
 
 Some other related bits of code:
