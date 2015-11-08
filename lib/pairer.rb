@@ -7,15 +7,14 @@ class Pairer
 
   def run
     set = []
-    while combos.length > 0
+    first, *rest = *list
+    rest.each_with_index do |person, index| 
       pairs = []
-      if process pairs
-        set << pairs
-        combos = list - set.flatten
-      else
-        combos += pairs
-        combos = combos.shuffle
+      pairs << [first, person]
+      (1..number_pairs-1).each do |offset|
+        pairs << [rest[(index-offset)%rest.length], rest[(index+offset)%rest.length]]
       end
+      set << pairs
     end
     set
   end
@@ -23,23 +22,4 @@ class Pairer
   private
 
   attr_reader :number_pairs, :list
-  attr_accessor :combos
-
-  def alternates pairs
-    combos.reject { |p| check_for(p[0], pairs) || check_for(p[1], pairs) }
-  end
-
-  def check_for element, pairs
-    pairs.flatten.include? element
-  end
-
-  def process pairs, previous_length = -1, spin = 0
-    return true if pairs.length == number_pairs
-    while (pair = alternates(pairs).first).nil? do combos << pairs.pop end
-    combos.delete pair
-    pairs << pair
-    spin += 1 if previous_length == pairs.length
-    return false if spin > 10
-    process pairs, pairs.length, spin
-  end
 end
