@@ -19,6 +19,8 @@ You can use the system from irb like so (to include your set of individuals for 
  [["Pablo", "Yev"], ["Norm", "Dan"], ["Jay", "Andrew"], ["Rob", "Tom"]]]
  ```
 
+The running time of this operation should be O(n²), where n is the length of the array.
+
 Question on math StackExchange related to the above issue:
 
 * http://math.stackexchange.com/questions/1477767/efficiently-partition-a-set-into-all-possible-unique-pair-combinations
