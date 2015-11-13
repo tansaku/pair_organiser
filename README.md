@@ -1,20 +1,23 @@
 # Pair Organiser
 For finding all possible combinations of pairs amongst a group
 
-To use please edit the pair_organiser.rb file on the root (to include your set of individuals for pairing) and run like so:
+You can use the system from irb like so (to include your set of individuals for pairing) and run like so:
 
 ```
-$ ruby pair_organiser.rb 
-[[["Pablo", "Dan"], ["Andrew", "Tom"], ["Rob", "Jay"], ["Norm", "Yev"]],
- [["Pablo", "Andrew"], ["Dan", "Tom"], ["Rob", "Norm"], ["Jay", "Yev"]],
- [["Pablo", "Tom"], ["Dan", "Andrew"], ["Rob", "Yev"], ["Jay", "Norm"]],
- [["Pablo", "Rob"], ["Dan", "Jay"], ["Andrew", "Norm"], ["Tom", "Yev"]],
- [["Pablo", "Jay"], ["Dan", "Rob"], ["Andrew", "Yev"], ["Tom", "Norm"]],
- [["Pablo", "Norm"], ["Dan", "Yev"], ["Andrew", "Rob"], ["Tom", "Jay"]],
- [["Pablo", "Yev"], ["Dan", "Norm"], ["Andrew", "Jay"], ["Tom", "Rob"]]]
+→ irb
+2.2.3 :001 > p = Pairer.new %w{Pablo Dan Andrew Tom Rob Jay Norm Yev}
+ => #<Pairer:0x007fee1b11b280 @list=["Pablo", "Dan", "Andrew", "Tom", "Rob", "Jay", "Norm", "Yev"], @combos=[["Pablo", "Dan"], ["Pablo", "Andrew"], ["Pablo", "Tom"], ["Pablo", "Rob"], ["Pablo", "Jay"], ["Pablo", "Norm"], ["Pablo", "Yev"], ["Dan", "Andrew"], ["Dan", "Tom"], ["Dan", "Rob"], ["Dan", "Jay"], ["Dan", "Norm"], ["Dan", "Yev"], ["Andrew", "Tom"], ["Andrew", "Rob"], ["Andrew", "Jay"], ["Andrew", "Norm"], ["Andrew", "Yev"], ["Tom", "Rob"], ["Tom", "Jay"], ["Tom", "Norm"], ["Tom", "Yev"], ["Rob", "Jay"], ["Rob", "Norm"], ["Rob", "Yev"], ["Jay", "Norm"], ["Jay", "Yev"], ["Norm", "Yev"]], @number_pairs=4> 
+2.2.3 :006 > require 'pp'
+ => true 
+2.2.3 :007 > pp p.run
+[[["Pablo", "Dan"], ["Yev", "Andrew"], ["Norm", "Tom"], ["Jay", "Rob"]],
+ [["Pablo", "Andrew"], ["Dan", "Tom"], ["Yev", "Rob"], ["Norm", "Jay"]],
+ [["Pablo", "Tom"], ["Andrew", "Rob"], ["Dan", "Jay"], ["Yev", "Norm"]],
+ [["Pablo", "Rob"], ["Tom", "Jay"], ["Andrew", "Norm"], ["Dan", "Yev"]],
+ [["Pablo", "Jay"], ["Rob", "Norm"], ["Tom", "Yev"], ["Andrew", "Dan"]],
+ [["Pablo", "Norm"], ["Jay", "Yev"], ["Rob", "Dan"], ["Tom", "Andrew"]],
+ [["Pablo", "Yev"], ["Norm", "Dan"], ["Jay", "Andrew"], ["Rob", "Tom"]]]
  ```
-
- NOTE:  This algorithm employed uses a pseudo-random search and is not guaranteed to terminate.  I have successfully run the algorithm for up to 34 individuals, but it took six non-terminating runs before the correct solution could be generated.  If the algorithm gets stuck on a large pairing set do ctrl-C and restart a few times to see if another pseudo-random path will generate a solution.
 
 Question on math StackExchange related to the above issue:
 
