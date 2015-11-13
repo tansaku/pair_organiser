@@ -6,20 +6,19 @@ class Pairer
   end
 
   def run
-    set = []
     first, *rest = *list
-    rest.each_with_index do |person, index| 
-      pairs = []
-      pairs << [first, person]
-      (1..number_pairs-1).each do |offset|
-        pairs << [rest[(index-offset)%rest.length], rest[(index+offset)%rest.length]]
+    rest.each_with_index.inject([]) do |set, (person,index)|
+      set << (1..number_pairs-1).inject([[first, person]]) do |pairs, offset|
+        pairs << pair(rest, index, offset)
       end
-      set << pairs
     end
-    set
   end
 
   private
+
+  def pair(rest, index, offset)
+    [rest[(index-offset)%rest.length], rest[(index+offset)%rest.length]]
+  end
 
   attr_reader :number_pairs, :list
 end
